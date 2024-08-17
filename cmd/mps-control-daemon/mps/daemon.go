@@ -98,7 +98,7 @@ func (d *Daemon) Start() error {
 		return fmt.Errorf("error creating directory %v: %w", pipeDir, err)
 	}
 
-	if err := selinux.Chcon(pipeDir, "container_file_t", true); err != nil {
+	if err := selinux.Chcon(pipeDir, "system_u:object_r:container_file_t:s0", true); err != nil {
 		return fmt.Errorf("error setting SELinux context: %w", err)
 	}
 
